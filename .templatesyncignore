@@ -9,6 +9,6 @@ package.json
 wrangler.toml
 bun.lockb
 
-src
-test
+src/
+test/
 worker-configuration.d.ts
