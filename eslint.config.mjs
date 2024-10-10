@@ -67,7 +67,7 @@ export default [
         },
       ],
 
-      "no-console": "error",
+      "no-console": "off",
       "no-unused-vars": "off",
       "prefer-rest-params": "off",
       "prefer-spread": "off",
