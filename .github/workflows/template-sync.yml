@@ -1,0 +1,27 @@
+on:
+  # cronjob trigger
+  schedule:
+  - cron: "0 0 1 * *" #
+  # manual trigger
+  workflow_dispatch:
+jobs:
+  repo-sync:
+    runs-on: ubuntu-latest
+    # https://docs.github.com/en/actions/using-jobs/assigning-permissions-to-jobs
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      # To use this repository's private action, you must check out the repository
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: actions-template-sync
+        uses: AndreasAugustin/actions-template-sync@v2
+        if: github.event.repository.name != 'worker-starter'
+        with:
+          github_token: ${{ secrets.REPO_SYNC_TOKEN }}
+          source_repo_path: opraying/worker-starter
+          upstream_branch: main # defaults to main
+          pr_labels: template_sync # defaults to template_sync
