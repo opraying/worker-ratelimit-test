@@ -4,6 +4,13 @@ on:
   - cron: "0 0 1 * *" #
   # manual trigger
   workflow_dispatch:
+
+permissions:
+  actions: write
+  pull-requests: write
+  workflows: write
+  contents: read
+
 jobs:
   repo-sync:
     runs-on: ubuntu-latest
