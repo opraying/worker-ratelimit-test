@@ -9,7 +9,7 @@
     "test": "vitest",
     "typecheck": "tsc -p tsconfig.src.json --noEmit",
     "madge": "madge --ts-config ./tsconfig.src.json --circular --no-color --no-spinner --extensions ts,tsx src",
-    "deploy": "wrangler deploy",
+    "deploy": "wrangler deploy --name=$(jq -r .name package.json)",
     "dev": "wrangler dev",
     "start": "wrangler dev",
     "cf-typegen": "wrangler types"
