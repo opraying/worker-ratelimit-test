@@ -2,9 +2,9 @@ name: Release
 
 on:
   push:
-    branches: [  ]
+    branches: [ main ]
   pull_request:
-    branches: [  ]
+    branches: [ dev ]
 
 permissions:
   contents: read
@@ -21,9 +21,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
-      - name: Set project name
-        run: echo "PROJECT_NAME=$(jq -r .name package.json)" >> $GITHUB_ENV
 
       - uses: actions/cache@v4
         with:
@@ -49,6 +46,9 @@ jobs:
       - name: Type check
         run: bun run typecheck
 
+      - name: Set project name
+        run: echo "PROJECT_NAME=$(jq -r .name package.json)" >> $GITHUB_ENV
+        
       - name: Deploy
         id: deploy
         uses: cloudflare/wrangler-action@v3
