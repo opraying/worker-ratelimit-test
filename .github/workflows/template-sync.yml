@@ -18,7 +18,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: actions-template-sync
-        uses: xesrevinu/actions-template-sync@v3.1.0
+        uses: xesrevinu/actions-template-sync@v3.1.1
         with:
           sync_token: ${{ secrets.REPO_SYNC_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
