@@ -1,0 +1,14 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "bun-starter"
+
+main = "src/index.ts"
+
+compatibility_date = "2024-09-02"
+
+compatibility_flags = []
+
+[observability]
+enabled = true
+
+[placement]
+mode = "smart"
