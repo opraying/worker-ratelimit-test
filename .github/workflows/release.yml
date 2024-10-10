@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ]
   pull_request:
-    branches: [ main ]
+    branches: [ dev ]
 
 permissions:
   contents: read
@@ -21,6 +21,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Set project name
+        run: echo "PROJECT_NAME=$(jq -r .name package.json)" >> $GITHUB_ENV
 
       - uses: actions/cache@v4
         with:
@@ -51,7 +54,7 @@ jobs:
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          command: deploy --name=${{ github.event.repository.name }}
+          command: deploy --name=${{ env.PROJECT_NAME }}
 
       - name: Send Deployment Status
         if: always()
@@ -68,6 +71,6 @@ jobs:
                 'Content-Type': 'application/json'
               },
               body: JSON.stringify({ 
-                content: status === 'failure' ? '❌ ${{ github.event.repository.name }} deployment failed' : '🚀 ${{ github.event.repository.name }} has been released. ${{ env.DEPLOYMENT_URL }}'
+                content: status === 'failure' ? '❌ ${{ env.PROJECT_NAME }} deployment failed' : '🚀 ${{ env.PROJECT_NAME }} has been released. ${{ env.DEPLOYMENT_URL }}'
               })
             });
