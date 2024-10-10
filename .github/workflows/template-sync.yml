@@ -25,5 +25,6 @@ jobs:
           sync_token: ${{ secrets.REPO_SYNC_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           source_repo_path: opraying/worker-starter
+          is_pr_cleanup: true
           upstream_branch: main
           pr_labels: chore,📚 template-sync
