@@ -17,18 +17,11 @@ jobs:
       # To use this repository's private action, you must check out the repository
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.REPO_SYNC_TOKEN }}
-      - name: Configure Git
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
       - name: actions-template-sync
-        uses: AndreasAugustin/actions-template-sync@v2
+        uses: xesrevinu/actions-template-sync@v3.1.0
         with:
-          github_token: ${{ secrets.REPO_SYNC_TOKEN }}
+          sync_token: ${{ secrets.REPO_SYNC_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           source_repo_path: opraying/worker-starter
           upstream_branch: main
-          git_user_name: github-actions[bot]
-          git_user_email: 41898282+github-actions[bot]@users.noreply.github.com
           pr_labels: chore,📚 template-sync
