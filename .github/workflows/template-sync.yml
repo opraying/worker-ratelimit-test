@@ -27,5 +27,5 @@ jobs:
         with:
           github_token: ${{ secrets.REPO_SYNC_TOKEN }}
           source_repo_path: opraying/worker-starter
-          upstream_branch: main # defaults to main
-          pr_labels: template_sync # defaults to template_sync
+          upstream_branch: main
+          pr_labels: chore,📚 template-sync
