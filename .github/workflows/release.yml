@@ -51,6 +51,7 @@ jobs:
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          command: deploy --name=${{ github.event.repository.name }}
 
       - name: Send Deployment Status
         if: always()
