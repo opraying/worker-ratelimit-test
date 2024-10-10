@@ -5,26 +5,26 @@ on:
   # manual trigger
   workflow_dispatch:
 
-# https://docs.github.com/en/actions/using-jobs/assigning-permissions-to-jobs
-permissions:
-  actions: write
-  contents: write
-  pull-requests: write
-  
 jobs:
   repo-sync:
     runs-on: ubuntu-latest
+    # https://docs.github.com/en/actions/using-jobs/assigning-permissions-to-jobs
+    permissions:
+      actions: write
+      contents: write
+      pull-requests: write
     steps:
       # To use this repository's private action, you must check out the repository
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
+          token: ${{ secrets.REPO_SYNC_TOKEN }}
       - name: actions-template-sync
         uses: AndreasAugustin/actions-template-sync@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.REPO_SYNC_TOKEN }}
           source_repo_path: opraying/worker-starter
           upstream_branch: main
+          git_user_name: github-actions
+          git_user_email: github-actions@github.com
           pr_labels: chore,📚 template-sync
