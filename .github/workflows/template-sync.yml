@@ -33,7 +33,7 @@ jobs:
           source_repo_path: opraying/worker-starter
           is_pr_cleanup: true
           upstream_branch: main
-          pr_labels: chore,📚 template-sync
+          pr_labels: 🔁 template-sync
       - name: 📊 Report Sync Status
         if: always()
         run: |
