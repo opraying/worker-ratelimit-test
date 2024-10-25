@@ -25,8 +25,6 @@ const Live = pipe(
 
 const runtime = ManagedRuntime.make(Live)
 
-const handler = HttpApiBuilder.toWebHandler(runtime, HttpMiddleware.logger)
-
 declare global {
   // eslint-disable-next-line no-var
   var env: Env
@@ -37,6 +35,8 @@ export default {
     Object.assign(globalThis, {
       env
     })
+
+    const handler = HttpApiBuilder.toWebHandler(runtime, HttpMiddleware.logger)
 
     return handler(request as unknown as Request)
   }
