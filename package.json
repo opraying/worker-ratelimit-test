@@ -5,7 +5,7 @@
   "packageManager": "bun@1.1.24",
   "scripts": {
     "lint": "eslint \"{src,test,scripts}/**/*.{ts,mjs}\"",
-    "lint-fix": "pnpm lint --fix",
+    "lint-fix": "bun lint --fix",
     "test": "vitest",
     "typecheck": "tsc -p tsconfig.src.json --noEmit",
     "madge": "madge --ts-config ./tsconfig.src.json --circular --no-color --no-spinner --extensions ts,tsx src",
