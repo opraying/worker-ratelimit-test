@@ -1,17 +1,17 @@
 import * as HttpApiEndpoint from "@effect/platform/HttpApiEndpoint"
 import * as HttpApiGroup from "@effect/platform/HttpApiGroup"
 import * as OpenApi from "@effect/platform/OpenApi"
-import * as Schema from "@effect/schema/Schema"
+import * as Schema from "effect/Schema"
 
-export class AppApi extends HttpApiGroup.make("app").pipe(
-  HttpApiGroup.add(
-    HttpApiEndpoint.get("index", "/").pipe(HttpApiEndpoint.setSuccess(
+export class AppApi extends HttpApiGroup.make("app")
+  .add(
+    HttpApiEndpoint.get("index", "/").addSuccess(
       Schema.String
-    ))
-  ),
-  HttpApiGroup.add(HttpApiEndpoint.get("health", "/health").pipe(HttpApiEndpoint.setSuccess(Schema.String))),
-  OpenApi.annotate({
+    )
+  )
+  .add(HttpApiEndpoint.get("health", "/health").addSuccess(Schema.String))
+  .annotateContext(OpenApi.annotations({
     title: "App Api",
     description: "App Api"
-  })
-) {}
+  }))
+{}
