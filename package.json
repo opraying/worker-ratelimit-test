@@ -4,7 +4,7 @@
 	"type": "module",
 	"packageManager": "bun@1.1.42",
 	"scripts": {
-		"lint": "eslint \"{src,test,scripts}/**/*.{ts,mjs}\"",
+		"lint": "eslint \"{src,test,scripts}/**/*.{ts,mjs}\" \"**/*.{md,json,jsonc}\"",
 		"lint-fix": "bun lint --fix",
 		"test": "vitest",
 		"typecheck": "tsc -p tsconfig.src.json --noEmit",
@@ -15,7 +15,10 @@
 		"cf-typegen": "wrangler types"
 	},
 	"browserslist": {
-		"production": ["defaults", "not op_mini all"],
+		"production": [
+			"defaults",
+			"not op_mini all"
+		],
 		"development": [
 			"last 1 chrome version",
 			"last 1 firefox version",
